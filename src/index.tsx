@@ -8,10 +8,12 @@ import { LoadingScreen } from "./ui/LoadingScreen";
 import { initElectron } from "./Electron";
 
 import { newRemoteFileApiConnection } from "./RemoteFileAPI/RemoteFileAPI";
+import { startTranslator } from "./Translation/Translator";
 
 import "./css/font.css";
 
 initElectron();
+startTranslator();
 globalThis.React = React;
 globalThis.ReactDOM = ReactDOM;
 ReactDOM.render(
