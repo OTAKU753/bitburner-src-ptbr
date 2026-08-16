@@ -3,9 +3,11 @@ export function startTranslator(): void {
     const selection = window.getSelection();
     const text = selection?.toString().trim();
 
-    if (!text) return;
+    if (!selection || !text || selection.rangeCount === 0) return;
 
     event.preventDefault();
+
+    const range = selection.getRangeAt(0);
 
     const menu = document.createElement("div");
 
@@ -23,7 +25,19 @@ export function startTranslator(): void {
     menu.style.zIndex = "999999";
 
     menu.addEventListener("click", () => {
-      console.log("[PT-BR] Texto selecionado:", text);
+      console.log("[PT-BR] Texto original:", text);
+
+      const translatedText =
+        `[TRADUZIDO] ${text}`;
+
+      range.deleteContents();
+
+      const translatedNode =
+        document.createTextNode(translatedText);
+
+      range.insertNode(translatedNode);
+
+      selection.removeAllRanges();
 
       menu.remove();
     });
