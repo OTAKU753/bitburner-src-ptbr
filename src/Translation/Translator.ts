@@ -99,9 +99,14 @@ ${html}
 }
 
 export function startTranslator(): void {
+  let selectedElement: HTMLElement | null = null;
   document.addEventListener(
     "contextmenu",
     (event) => {
+      selectedElement =
+        event.target instanceof HTMLElement
+          ? event.target
+          : null;
       const selection =
         window.getSelection();
 
@@ -180,6 +185,11 @@ export function startTranslator(): void {
                 "[PT-BR] HTML traduzido:",
                 translatedHtml,
               );
+
+              if (selectedElement) {
+                selectedElement.outerHTML =
+                  translatedHtml;
+              }
 
               const container = document.createElement("div");
 
