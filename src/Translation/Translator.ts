@@ -1,4 +1,4 @@
-const GEMINI_API_KEY = "SUA_CHAVE_REAL_AQUI";
+const GEMINI_API_KEY = "0";
 
 async function translateHtml(html: string): Promise<string> {
   if (!GEMINI_API_KEY) {
@@ -180,6 +180,18 @@ export function startTranslator(): void {
                 "[PT-BR] HTML traduzido:",
                 translatedHtml,
               );
+
+              const container = document.createElement("div");
+
+              container.innerHTML = translatedHtml;
+
+              const translatedElement =
+                container.firstElementChild;
+
+              if (translatedElement) {
+                element.innerHTML =
+                  translatedElement.innerHTML;
+              }
 
               menu.textContent =
                 "Traduzido!";
