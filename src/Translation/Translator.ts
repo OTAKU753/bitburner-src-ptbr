@@ -1,4 +1,4 @@
-const GEMINI_API_KEY = "0000";
+const GEMINI_API_KEY = "SUA_CHAVE_REAL_AQUI";
 
 async function translateHtml(html: string): Promise<string> {
   if (!GEMINI_API_KEY) {
